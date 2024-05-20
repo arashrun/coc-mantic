@@ -1,0 +1,52 @@
+{
+  "name": "coc-mantic",
+  "version": "0.0.1-development",
+  "description": "coc extension insprit c-mantic",
+  "author": "arashrun <arashrun@arashrun.com>",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "keywords": [
+    "coc.nvim"
+  ],
+  "engines": {
+    "coc": "^0.0.82"
+  },
+  "scripts": {
+    "watch": "node esbuild.mjs --watch",
+    "build": "node esbuild.mjs",
+    "prepare": "node esbuild.mjs"
+  },
+  "devDependencies": {
+    "coc.nvim": "^0.0.83-next.18",
+    "esbuild": "^0.19.8",
+    "typescript": "^5.3.3",
+    "tree-sitter": "^0.21.1",
+    "tree-sitter-cpp": "^0.22.0"
+  },
+  "activationEvents": [
+    "*"
+  ],
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "coc-mantic configuration",
+      "properties": {
+        "coc-mantic.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable coc-mantic extension"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "coc-mantic.Command",
+        "title": "coc-mantic command title"
+      }
+    ]
+  },
+  "dependencies": {
+    "tree-sitter": "^0.21.1",
+    "tree-sitter-cpp": "^0.22.0"
+  }
+}
