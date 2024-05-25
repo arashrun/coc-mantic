@@ -44,9 +44,5 @@
         "title": "coc-mantic command title"
       }
     ]
-  },
-  "dependencies": {
-    "tree-sitter": "^0.21.1",
-    "tree-sitter-cpp": "^0.22.0"
   }
 }

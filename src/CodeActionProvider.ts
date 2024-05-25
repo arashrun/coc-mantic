@@ -1,6 +1,6 @@
 import * as coc from 'coc.nvim'
 import { RequestType, type TextDocumentIdentifier, type TextDocumentPositionParams, Uri, window, workspace } from 'coc.nvim'
-import { getClassName } from './tree';
+import { getNodeInfo, type nodeInfo } from './tree';
 
 
 namespace SwitchSourceHeaderRequest {
@@ -35,21 +35,22 @@ export class CodeActionProvider implements coc.CodeActionProvider
 			}
 		};
 
-		const lineNumber = range.start.line + 1;
-		const pos :coc.Position= {line:lineNumber, character: 0};
-		const curText = document.lineAt(lineNumber-1).text;
-		// 1. 找到对应cpp文件
-		// 2. 找到对应的插入位置
+		const curLine = range.start.line + 1;
+		const pos :coc.Position= {line:curLine, character: 0};
+		const curText = document.lineAt(curLine-1).text.trim();
 		// 3. 生成skeleton
 		const fullText = document.getText();
-		let className = getClassName(fullText, range.start.line)
-		const imp = curText.replace(/;$/, '{')
+		const info = getNodeInfo(fullText, range.start.line, range.start.character)
+		if(info.isFunction) {
 
-		// 4. 插入函数skeleton
-		edit.changes![document.uri] = 	[ 	coc.TextEdit.insert(pos, className), 
-											coc.TextEdit.insert({line:lineNumber+1, character:0}, imp)
-										]
+			const imp = curText.replace(/;$/, '\n{\n}\n')
 
+			// 4. 插入函数skeleton
+			edit.changes![document.uri] = 	[ 	coc.TextEdit.insert(pos, info.className), 
+												coc.TextEdit.insert({line:curLine+1, character:0}, imp)
+											]
+
+		}
 		const action = coc.CodeAction.create(
 			'add definition',
 			edit,
