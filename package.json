@@ -40,7 +40,7 @@
     },
     "commands": [
       {
-        "command": "coc-mantic.Command",
+        "command": "coc-mantic.Echo",
         "title": "coc-mantic command title"
       }
     ]

@@ -3,7 +3,8 @@ import {
 	DocumentSelector,
 	languages,
 	CodeAction,
-	Command
+	Command,
+	nvim
 } from 'coc.nvim';
 import DemoList from './lists';
 import { CodeActionProvider } from './CodeActionProvider';
@@ -19,8 +20,11 @@ export async function activate(context: ExtensionContext): Promise<void> {
 
   context.subscriptions.push(
 	// 注册commands
-    commands.registerCommand('coc-mantic.Command', async () => {
-      window.showInformationMessage('coc-mantic Commands works! : add definition');
+    commands.registerCommand('_internal.copy', async (str) => {
+		nvim.call('setreg', ['"', str])
+    }),
+    commands.registerCommand('coc-mantic.Echo', async () => {
+      window.showInformationMessage('coc-mantic Echo!');
     }),
 
 	// 注册codeAction

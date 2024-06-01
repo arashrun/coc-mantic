@@ -1,0 +1,7 @@
+# https://prettier.io/docs/en/options
+
+# .prettierrc or .prettierrc.yaml
+trailingComma: 'es5'
+tabWidth: 4
+semi: false
+singleQuote: true
