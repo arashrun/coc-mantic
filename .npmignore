@@ -8,6 +8,10 @@ webpack.config.js
 esbuild.js
 yarn.lock
 yarn-error.log
+package-lock.json
+build.task
+t.mjs
+esbuild.mjs
 .github
 .eslintrc.js
 .prettierrc
