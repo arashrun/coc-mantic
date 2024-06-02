@@ -1,6 +1,6 @@
 {
   "name": "coc-mantic",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "coc extension insprit c-mantic",
   "author": "arashrun <arashrun@qq.com>",
   "license": "MIT",
@@ -8,6 +8,10 @@
   "keywords": [
     "coc.nvim"
   ],
+  "repository": {
+	  "type": "git",
+	  "url": "https://github.com/arashrun/coc-mantic.git"
+  },
   "engines": {
     "coc": "^0.0.82"
   },

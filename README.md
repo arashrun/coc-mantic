@@ -32,6 +32,21 @@ coc extension insprit c-mantic
 
 ## develp
 
+- npmignore
+
+忽略最终发布流程不必要的文件
+
+- 登录
+
+```bash
+npm login --registry=https://registry.npmjs.org
+```
+
+- 发布
+
+```bash
+npm publish --registry=https://registry.npmjs.org
+```
 
 ## License
 
