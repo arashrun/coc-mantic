@@ -1,13 +1,6 @@
 import * as coc from 'coc.nvim'
-import {
-    RequestType,
-    type TextDocumentIdentifier,
-    type TextDocumentPositionParams,
-    Uri,
-    window,
-    workspace,
-} from 'coc.nvim'
-import { getNodeInfo, type nodeInfo } from './tree'
+import { RequestType, type TextDocumentIdentifier } from 'coc.nvim'
+import { getNodeInfo } from './tree'
 
 namespace SwitchSourceHeaderRequest {
     export const type = new RequestType<TextDocumentIdentifier, string, void>(
@@ -66,7 +59,7 @@ export class CodeActionProvider implements coc.CodeActionProvider {
 
             const imp = skeleton.replace(/;$/, '\n{\n}\n')
 
-			// add definition in header
+            // add definition in header
             edit.changes![document.uri] = [
                 coc.TextEdit.insert(
                     { line: document.end.line + 1, character: 0 },
@@ -79,12 +72,12 @@ export class CodeActionProvider implements coc.CodeActionProvider {
                 coc.CodeActionKind.QuickFix
             )
 
-			// copy skeleton into registers
-			const copyIntoRegisters = coc.CodeAction.create(
-				'copy definition into registers',
-				coc.Command.create('copy', '_internal.copy', imp),
-				coc.CodeActionKind.Refactor
-			)
+            // copy skeleton into registers
+            const copyIntoRegisters = coc.CodeAction.create(
+                'copy definition into registers',
+                coc.Command.create('copy', '_internal.copy', imp),
+                coc.CodeActionKind.Refactor
+            )
 
             return [copyIntoRegisters, addDefInHeader]
         }
